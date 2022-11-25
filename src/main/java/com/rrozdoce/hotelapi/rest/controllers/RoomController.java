@@ -12,6 +12,7 @@ import java.util.List;
 @RequestMapping("api/room")
 public class RoomController {
 
+    // usar DTO
     private RoomRepository repository;
 
     public RoomController(RoomRepository repository) {

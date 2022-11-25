@@ -15,11 +15,13 @@ public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    private Long room_id;
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
     @Column(name = "floor")
     private Integer floor;
-
     @Column(name = "number")
     private Integer number;
+
 }

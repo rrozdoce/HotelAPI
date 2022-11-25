@@ -9,4 +9,6 @@ public class RoomService {
     public RoomService(RoomRepository repository) {
         this.repository = repository;
     }
+
+    // code
 }
