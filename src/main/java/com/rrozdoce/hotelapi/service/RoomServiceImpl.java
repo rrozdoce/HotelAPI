@@ -4,7 +4,6 @@ import com.rrozdoce.hotelapi.domain.entities.Room;
 import com.rrozdoce.hotelapi.rest.dtos.RoomDTO;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface RoomServiceImpl {
 
