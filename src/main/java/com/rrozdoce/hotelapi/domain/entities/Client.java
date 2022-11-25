@@ -1,6 +1,7 @@
 package com.rrozdoce.hotelapi.domain.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ public class Client {
     private String name;
     @Column(name = "adress")
     private String adress;
+    @JsonIgnore
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private Set<Room> rooms;
 }

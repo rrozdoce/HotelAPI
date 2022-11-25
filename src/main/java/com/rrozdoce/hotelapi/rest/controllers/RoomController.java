@@ -2,6 +2,8 @@ package com.rrozdoce.hotelapi.rest.controllers;
 
 import com.rrozdoce.hotelapi.domain.entities.Room;
 import com.rrozdoce.hotelapi.repositories.RoomRepository;
+import com.rrozdoce.hotelapi.rest.dtos.RoomDTO;
+import com.rrozdoce.hotelapi.service.impl.RoomService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,24 +15,25 @@ import java.util.List;
 public class RoomController {
 
     // usar DTO
-    private RoomRepository repository;
+    private RoomService service;
 
-    public RoomController(RoomRepository repository) {
-        this.repository = repository;
+    public RoomController(RoomService service) {
+        this.service = service;
     }
+
     @GetMapping
      public List<Room> findAll() {
-         return repository.findAll();
+        return service.findAll();
      }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Room save(@RequestBody @Valid Room room) {
-        return repository.save(room);
+    public Room save(@RequestBody @Valid RoomDTO dto) {
+       return service.save(dto);
     }
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
-        repository.deleteById(id);
+        service.delete(id);
     }
 }
