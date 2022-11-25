@@ -19,4 +19,6 @@ public class Client {
     private Long id;
     @Column(name = "name")
     private String name;
+    @Column(name = "adress")
+    private String adress;
 }
