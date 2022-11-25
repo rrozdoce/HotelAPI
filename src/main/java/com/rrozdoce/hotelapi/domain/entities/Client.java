@@ -26,7 +26,7 @@ public class Client {
     private String name;
     @Column(name = "adress")
     private String adress;
-    @JsonIgnore
+    @JsonIgnore // recursive infinite error without this
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private Set<Room> rooms;
 }

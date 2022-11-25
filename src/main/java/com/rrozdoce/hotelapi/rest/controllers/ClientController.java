@@ -1,7 +1,7 @@
 package com.rrozdoce.hotelapi.rest.controllers;
 
 import com.rrozdoce.hotelapi.domain.entities.Client;
-import com.rrozdoce.hotelapi.repositories.ClientRepository;
+import com.rrozdoce.hotelapi.domain.repositories.ClientRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

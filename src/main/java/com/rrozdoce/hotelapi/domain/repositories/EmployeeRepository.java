@@ -1,4 +1,4 @@
-package com.rrozdoce.hotelapi.repositories;
+package com.rrozdoce.hotelapi.domain.repositories;
 
 import com.rrozdoce.hotelapi.domain.entities.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
