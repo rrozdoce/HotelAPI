@@ -1,0 +1,21 @@
+    {
+        "client_id": 1,
+        "employee": null,
+        "name": "Viviane",
+        "adress": "Dourados",
+        "rooms": []
+    }
+
+    {
+        "room_id": 1,
+        "client": null,
+        "floor": 6,
+        "number": 72
+    }
+
+    {
+        "employee_id": 1,
+        "name": "Fernanda",
+        "adress": "Dourados",
+        "clients": []
+    }

@@ -23,5 +23,4 @@ public class Room {
     private Integer floor;
     @Column(name = "number")
     private Integer number;
-
 }
