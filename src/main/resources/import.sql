@@ -1,0 +1,1 @@
+INSERT INTO Room(floor, number) VALUES (2, 32);
