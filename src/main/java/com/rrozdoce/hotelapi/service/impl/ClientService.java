@@ -20,12 +20,10 @@ public class ClientService implements ClientServiceImpl {
 
     private final ClientRepository clientRepository;
     private final EmployeeRepository employeeRepository;
-    private final RoomRepository roomRepository;
 
-    public ClientService(ClientRepository clientRepository, EmployeeRepository employeeRepository, RoomRepository roomRepository) {
+    public ClientService(ClientRepository clientRepository, EmployeeRepository employeeRepository) {
         this.clientRepository = clientRepository;
         this.employeeRepository = employeeRepository;
-        this.roomRepository = roomRepository;
     }
 
     @Transactional
