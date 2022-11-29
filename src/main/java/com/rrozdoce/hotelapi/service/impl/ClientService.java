@@ -10,6 +10,7 @@ import com.rrozdoce.hotelapi.rest.dtos.ClientDTO;
 import com.rrozdoce.hotelapi.service.ClientServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public class ClientService implements ClientServiceImpl {
         this.roomRepository = roomRepository;
     }
 
+    @Transactional
     @Override
     public Client save(ClientDTO dto) {
         Long idEmployee = dto.getEmployee();
@@ -41,22 +43,24 @@ public class ClientService implements ClientServiceImpl {
         return  clientRepository.findAll();
     }
 
+    @Transactional
     @Override
     public void delete(Long id) {
          clientRepository.deleteById(id);
     }
 
+    @Transactional
     @Override
-    public void update(ClientDTO dto, Long id) {
+    public Client update(ClientDTO dto, Long id) {
         Long idEmployee = dto.getEmployee();
         Employee employee = employeeRepository
                 .findById(idEmployee)
                 .orElseThrow(() -> new ModelNotFoundExeption("Employee not found!!"));
         Client client = convert(dto, employee);
 
-        clientRepository.findById(id)
+       return clientRepository.findById(id)
                 .map(OldClient -> {
-                    client.setEmployee(OldClient.getEmployee());
+                    client.setClient_id(id);
                     clientRepository.save(client);
                     return OldClient;
                 }).orElseThrow( () -> new ResponseStatusException(

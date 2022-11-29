@@ -15,7 +15,7 @@ import java.util.Optional;
 public class RoomController {
 
     // usar DTO
-    private RoomService service;
+    private final RoomService service;
 
     public RoomController(RoomService service) {
         this.service = service;
@@ -39,6 +39,6 @@ public class RoomController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void att(@RequestBody @Valid RoomDTO dto, @PathVariable Long id) { service.att(dto, id);}
+    public Room att(@RequestBody @Valid RoomDTO dto, @PathVariable Long id) { return service.att(dto, id);}
 
 }

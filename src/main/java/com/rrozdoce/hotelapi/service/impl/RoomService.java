@@ -48,14 +48,14 @@ public class RoomService  implements RoomServiceImpl {
 
    @Transactional
    @Override
-   public void att(RoomDTO dto , Long id) {
+   public Room att(RoomDTO dto , Long id) {
        Long idClient = dto.getClient();
        Client client = clientRepository
                .findById(idClient)
                .orElseThrow(() -> new ModelNotFoundExeption(" Client not found!") );
        Room room = convert(dto, client);
 
-       roomRepository
+      return roomRepository
                .findById(id)
                .map(OldRoom -> {
                    room.setRoom_id(OldRoom.getRoom_id());

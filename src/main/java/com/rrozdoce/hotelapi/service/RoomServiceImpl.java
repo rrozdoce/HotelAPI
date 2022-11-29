@@ -10,6 +10,6 @@ public interface RoomServiceImpl {
    Room save(RoomDTO dto);
    List<Room> findAll();
    void delete(Long id);
-   void att(RoomDTO dto, Long id);
+   Room att(RoomDTO dto, Long id);
 
 }

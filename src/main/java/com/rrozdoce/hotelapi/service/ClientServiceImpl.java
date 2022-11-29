@@ -9,5 +9,5 @@ public interface ClientServiceImpl {
     Client save(ClientDTO dto);
     List<Client> findAll();
     void delete(Long id);
-    void update(ClientDTO dto, Long id);
+    Client update(ClientDTO dto, Long id);
 }

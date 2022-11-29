@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("api/client")
 public class ClientController {
 
-    private ClientService service;
+    private final ClientService service;
 
     public ClientController(ClientService service) {
         this.service = service;
@@ -32,8 +32,8 @@ public class ClientController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void att(@RequestBody @Valid ClientDTO dto, @PathVariable Long id){
-        service.update(dto, id);
+    public Client att(@RequestBody @Valid ClientDTO dto, @PathVariable Long id){
+       return service.update(dto, id);
     }
 
     @DeleteMapping("/{id}")
