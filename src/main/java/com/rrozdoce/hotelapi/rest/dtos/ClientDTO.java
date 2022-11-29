@@ -11,6 +11,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ClientDTO {
+    private Long employee;
     private String name;
     private String adress;
     private Set<Room> rooms;

@@ -1,7 +1,8 @@
 package com.rrozdoce.hotelapi.rest.controllers;
 
 import com.rrozdoce.hotelapi.domain.entities.Client;
-import com.rrozdoce.hotelapi.domain.repositories.ClientRepository;
+import com.rrozdoce.hotelapi.rest.dtos.ClientDTO;
+import com.rrozdoce.hotelapi.service.impl.ClientService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,25 +13,32 @@ import java.util.List;
 @RequestMapping("api/client")
 public class ClientController {
 
-    private ClientRepository repository;
+    private ClientService service;
 
-    public ClientController(ClientRepository repository) {
-        this.repository = repository;
+    public ClientController(ClientService service) {
+        this.service = service;
     }
 
     @GetMapping
     public List<Client> findAll() {
-        return repository.findAll();
+        return service.findAll();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Client save(@RequestBody @Valid Client client) {
-       return repository.save(client);
+    public Client save(@RequestBody @Valid ClientDTO client) {
+       return service.save(client);
     }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void att(@RequestBody @Valid ClientDTO dto, @PathVariable Long id){
+        service.update(dto, id);
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable  Long id) {
-        repository.deleteById(id);
+        service.delete(id);
     }
 }

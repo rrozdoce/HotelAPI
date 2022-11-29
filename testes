@@ -3,7 +3,7 @@
         "employee": null,
         "name": "Viviane",
         "adress": "Dourados",
-        "rooms": []
+        "rooms": [] // Could not write JSON: Infinite recursion (StackOverflowError).
     }
 
     {

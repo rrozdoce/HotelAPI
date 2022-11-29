@@ -11,6 +11,8 @@ import java.util.Set;
 @AllArgsConstructor
 public class EmployeeDTO {
     private String name;
+    /*
     private String adress;
     private Set<ClientDTO> client;
+     */
 }

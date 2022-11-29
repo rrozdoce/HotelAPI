@@ -37,7 +37,7 @@ public class RoomService  implements RoomServiceImpl {
         Client client = clientRepository
                .findById(idClient)
                .orElseThrow(() -> new ModelNotFoundExeption("Client not found!"));
-       return roomRepository.save(converter(dto, client));
+       return roomRepository.save(convert(dto, client));
    }
 
    @Transactional
@@ -53,7 +53,7 @@ public class RoomService  implements RoomServiceImpl {
        Client client = clientRepository
                .findById(idClient)
                .orElseThrow(() -> new ModelNotFoundExeption(" Client not found!") );
-       Room room = converter(dto, client);
+       Room room = convert(dto, client);
 
        roomRepository
                .findById(id)
@@ -66,7 +66,7 @@ public class RoomService  implements RoomServiceImpl {
                        "Room not found!!"));
    }
 
-   public Room converter(RoomDTO dto, Client client) {
+   public Room convert(RoomDTO dto, Client client) {
         Room room = new Room();
         room.setClient(client);
         room.setFloor(dto.getFloor());

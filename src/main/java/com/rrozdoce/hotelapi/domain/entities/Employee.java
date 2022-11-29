@@ -1,5 +1,6 @@
 package com.rrozdoce.hotelapi.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,5 +23,6 @@ public class Employee {
     @Column(name = "adress")
     private String adress;
     @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Client> clients;
 }
