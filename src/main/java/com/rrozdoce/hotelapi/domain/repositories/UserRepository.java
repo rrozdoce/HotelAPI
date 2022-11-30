@@ -1,8 +1,11 @@
 package com.rrozdoce.hotelapi.domain.repositories;
 
-import com.rrozdoce.hotelapi.domain.entities.User;
+import com.rrozdoce.hotelapi.domain.entities.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-//public interface UserRepository extends JpaRepository<User, Long> {
+import java.util.Optional;
 
-//}
+//@Repository
+public interface UserRepository extends JpaRepository<UserModel, Long> {
+    Optional<UserModel> findByUsername(String username);
+}
