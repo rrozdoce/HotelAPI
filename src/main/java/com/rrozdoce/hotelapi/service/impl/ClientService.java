@@ -32,7 +32,7 @@ public class ClientService implements ClientServiceImpl {
         Long idEmployee = dto.getEmployee();
         Employee employee = employeeRepository
                 .findById(idEmployee)
-                .orElseThrow(() -> new ModelNotFoundExeption("Employee not found!!"));
+                .orElseThrow(() -> new ModelNotFoundExeption("Employee not found, id: " + idEmployee));
         return clientRepository.save(convert(dto, employee));
     }
 
@@ -53,7 +53,7 @@ public class ClientService implements ClientServiceImpl {
         Long idEmployee = dto.getEmployee();
         Employee employee = employeeRepository
                 .findById(idEmployee)
-                .orElseThrow(() -> new ModelNotFoundExeption("Employee not found!!"));
+                .orElseThrow(() -> new ModelNotFoundExeption("Employee not found, id: " + idEmployee));
         Client client = convert(dto, employee);
 
        return clientRepository.findById(id)
@@ -61,9 +61,7 @@ public class ClientService implements ClientServiceImpl {
                     client.setClient_id(id);
                     clientRepository.save(client);
                     return OldClient;
-                }).orElseThrow( () -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND,
-                        "Client not found!!"));
+                }).orElseThrow( () -> new ModelNotFoundExeption("Client not found, id: " + id));
     }
 
     public Client convert(ClientDTO dto, Employee employee) {

@@ -2,6 +2,7 @@ package com.rrozdoce.hotelapi.service.impl;
 
 import com.rrozdoce.hotelapi.domain.entities.Employee;
 import com.rrozdoce.hotelapi.domain.repositories.EmployeeRepository;
+import com.rrozdoce.hotelapi.exceptions.ModelNotFoundExeption;
 import com.rrozdoce.hotelapi.rest.dtos.EmployeeDTO;
 import com.rrozdoce.hotelapi.service.EmployeeServiceImpl;
 import org.springframework.http.HttpStatus;
@@ -48,9 +49,7 @@ public class EmployeeService implements EmployeeServiceImpl {
                     employee.setEmployee_id(OldEmployee.getEmployee_id());
                     employeeRepository.save(employee);
                     return employee;
-                }).orElseThrow( () -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND,
-                        "Employee not found!!"));
+                }).orElseThrow( () -> new ModelNotFoundExeption("Employee not found, id: " + id));
     }
 
     public Employee convert(EmployeeDTO dto) {

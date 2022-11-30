@@ -14,32 +14,30 @@ import java.util.Optional;
 @RestController
 @RequestMapping("api/room")
 public class RoomController {
-
-    // usar DTO
     private final RoomService service;
 
     public RoomController(RoomService service) {
         this.service = service;
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    //@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping
      public List<Room> findAll() {
         return service.findAll();
      }
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Room save(@RequestBody @Valid RoomDTO dto) {
        return service.save(dto);
     }
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public Room att(@RequestBody @Valid RoomDTO dto, @PathVariable Long id) { return service.att(dto, id);}

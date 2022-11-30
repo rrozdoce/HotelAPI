@@ -2,6 +2,7 @@ package com.rrozdoce.hotelapi.configs.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,6 +19,10 @@ public class ConfigSecurity {
                 .httpBasic()
                 .and()
                 .authorizeHttpRequests()
+                //.antMatchers(HttpMethod.GET, "/api/client","/api/room", "/api/employee").permitAll()
+                //.antMatchers(HttpMethod.POST, "/api/client","/api/room", "/api/employee").hasAnyRole("USER", "ADMIN")
+                //.antMatchers(HttpMethod.PUT, "/api/client","/api/room", "/api/employee").hasAnyRole("ADMIN")
+                //.antMatchers(HttpMethod.DELETE, "/api/client","/api/room", "/api/employee").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable();

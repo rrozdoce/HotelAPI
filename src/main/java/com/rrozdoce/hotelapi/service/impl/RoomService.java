@@ -7,10 +7,8 @@ import com.rrozdoce.hotelapi.domain.repositories.RoomRepository;
 import com.rrozdoce.hotelapi.exceptions.ModelNotFoundExeption;
 import com.rrozdoce.hotelapi.rest.dtos.RoomDTO;
 import com.rrozdoce.hotelapi.service.RoomServiceImpl;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -36,7 +34,7 @@ public class RoomService  implements RoomServiceImpl {
         Long idClient = dto.getClient();
         Client client = clientRepository
                .findById(idClient)
-               .orElseThrow(() -> new ModelNotFoundExeption("Client not found!"));
+               .orElseThrow(() -> new ModelNotFoundExeption("Client not found, id: " + idClient));
        return roomRepository.save(convert(dto, client));
    }
 
@@ -52,7 +50,7 @@ public class RoomService  implements RoomServiceImpl {
        Long idClient = dto.getClient();
        Client client = clientRepository
                .findById(idClient)
-               .orElseThrow(() -> new ModelNotFoundExeption(" Client not found!") );
+               .orElseThrow(() -> new ModelNotFoundExeption(" Client not found, id" + idClient) );
        Room room = convert(dto, client);
 
       return roomRepository
@@ -61,9 +59,7 @@ public class RoomService  implements RoomServiceImpl {
                    room.setRoom_id(OldRoom.getRoom_id());
                    roomRepository.save(room);
                    return OldRoom;
-               }).orElseThrow( () -> new ResponseStatusException(
-                       HttpStatus.NOT_FOUND,
-                       "Room not found!!"));
+               }).orElseThrow( () -> new ModelNotFoundExeption("Room not found, id: " + id));
    }
 
    public Room convert(RoomDTO dto, Client client) {
